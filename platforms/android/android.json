@@ -45,7 +45,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<uses-feature android:name=\"android.hardware.camera\" android:required=\"false\" />",
+                            "xml": "<uses-feature android:name=\"android.hardware.camera\" android:required=\"true\" />",
                             "count": 1
                         }
                     ]

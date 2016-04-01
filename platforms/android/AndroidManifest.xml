@@ -31,5 +31,5 @@
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
 </manifest>
