@@ -73,6 +73,7 @@ function scan() {
       }, 
       function (error) {
           alert("Scanning failed: " + error);
-      }
+      },
+      {'SCAN_MODE': 'QR_CODE_MODE'}
    );
 }
