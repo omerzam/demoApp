@@ -51,19 +51,18 @@ var app = {
 };
 
 function scan() {
-    var url = 'http://ec2-54-191-94-161.us-west-2.compute.amazonaws.com/response.json'
+    var url = 'http://ec2-54-191-94-161.us-west-2.compute.amazonaws.com/post-validateb64.php'
+
     cordova.plugins.barcodeScanner.scan(
       function (result) {
-        //console.log(result)
         var request = $.ajax({
           url: url,
           type: "POST",
-          data: result.txt
+          data: btoa(result.txt)
         });
 
         request.done(function(result) {
-          alert(result.validation.reason)
-         // console.log(result)
+          alert(result)
         })
           // alert("We got a barcode\n" +
           //       "Result: " + result.text + "\n" +
