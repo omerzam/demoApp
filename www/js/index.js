@@ -58,11 +58,18 @@ function scan() {
     cordova.plugins.barcodeScanner.scan(
       function (result) {
 
+        var data = result.text
+        var length = data.length
+        var bytesArray = new Uint8Array(length);
+        for (var i = 0; i < length; i++) {
+          bytesArray[i] = data[i];
+        }
+
         var request = $.ajax({
           url: url,
           type: "POST",
           //contentType: 'application/octet-stream',
-          data: result.text,
+          data: bytesArray,
           processData: false
         });
 
