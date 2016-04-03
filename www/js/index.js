@@ -64,6 +64,14 @@ function scan() {
           data: btoa(result.text)
         });
 
+        request.success(function(result){
+          alert(result)
+        })
+
+        request.eror(function(err){
+          alert(err)
+        })
+
         request.done(function(result) {
           alert(result)
         })
