@@ -61,9 +61,9 @@ function scan() {
         var request = $.ajax({
           url: url,
           type: "POST",
-          contentType: 'application/octet-stream',
-          data: result.text,
-          processData: false
+          //contentType: 'application/octet-stream',
+          data: result.text
+          //processData: false
         });
 
         request.success(function(result){
