@@ -58,6 +58,7 @@ function scan() {
       function (result) {
         //console.log(result)
         alert(getByteLen(result.text));
+        alert(lengthInUtf8Bytes(result.text));
         //alert(btoa(result.text))
         var request = $.ajax({
           url: url,
@@ -103,5 +104,11 @@ function getByteLen(normal_val) {
                    c < (1 << 31) ? 6 : Number.NaN;
     }
     return byteLen;
+}
+
+function lengthInUtf8Bytes(str) {
+  // Matches only the 10.. bytes that are non-initial characters in a multi-byte sequence.
+  var m = encodeURIComponent(str).match(/%[89ABab]/g);
+  return str.length + (m ? m.length : 0);
 }
 
