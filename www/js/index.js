@@ -57,13 +57,13 @@ function scan() {
     cordova.plugins.barcodeScanner.scan(
       function (result) {
         //console.log(result)
-        alert(getByteLen(result.text));
-        alert(lengthInUtf8Bytes(result.text));
+        //alert(getByteLen(result.text));
+        //alert(lengthInUtf8Bytes(result.text));
         //alert(btoa(result.text))
         var request = $.ajax({
           url: url,
           type: "POST",
-          data: btoa(result.text)
+          data: result.text
         });
 
         request.success(function(result){
