@@ -10,7 +10,7 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-eval' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src * 'unsafe-inline' 'unsafe-eval';script-src * 'unsafe-eval' 'unsafe-inline'; media-src *">
 
     <!-- Required meta tags-->
     <meta charset="utf-8">
@@ -75,7 +75,7 @@
                             <!-- Link to another page -->
                             <a href="about.html">About app</a>
                             <p class="buttons-row">
-                              <a href="#" class="button button-big button-fill button-raised color-blue" onclick="scan()">Button</a>
+                              <a href="#" class="button button-big button-fill button-raised color-blue scan_button">Button</a>
                             </p>
                         </div>
                     </div>

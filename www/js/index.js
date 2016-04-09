@@ -1,3 +1,5 @@
+jQuery.support.cors = true;
+
 // Initialize app
 var myApp = new Framework7({
   material: true //enable Material theme
@@ -17,6 +19,9 @@ var mainView = myApp.addView('.view-main', {
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 });
+
+// Handle scan Event
+$$('.scan_button').on('click', scan);
 
 
 // Now we need to run the code that will be executed only for About page.
@@ -56,10 +61,12 @@ function scan() {
         });
 
         request.success(function(result){
+          console.log(result)
           alert(result)
         })
 
         request.error(function(err){
+          console.log(err)
           alert(err)
         })
 
