@@ -1,4 +1,4 @@
-//jQuery.support.cors = true;
+jQuery.support.cors = true;
 
 // Initialize app
 var myApp = new Framework7({
@@ -51,14 +51,14 @@ $$(document).on('pageInit', function (e) {
 // })
 
 function scan() {
-    // var url = 'http://ec2-54-191-94-161.us-west-2.compute.amazonaws.com/post-validateb64.php'
-    var url = 'validreponse.json'
+    var url = 'http://ec2-54-191-94-161.us-west-2.compute.amazonaws.com/post-validateb64.php'
+    // var url = 'validreponse.json'
 
     cordova.plugins.barcodeScanner.scan(
       function (result) {
-        var request = $$.ajax({
+        var request = $.ajax({
           url: url,
-          type: "GET",
+          type: "POST",
           data: result.text,
           success: requestSuccess,
           error: requestError,
@@ -67,24 +67,25 @@ function scan() {
 
         function requestSuccess(result){
           //console.log('success' + result)
-          var parsedResult = {}
-          try{
-            parsedResult = JSON.parse(result)
-          } catch(e){
-            console.log(e)
-          }
-          alert(result)
-          if(parsedResult.validation.status === 0){
+          // var parsedResult = {}
+          // try{
+          //   parsedResult = JSON.parse(result)
+          // } catch(e){
+          //   console.log(e)
+          // }
+          //alert(result)
+          // console.log(result)
+          if(result.validation.status === 0){
             mainView.router.load({
               url: 'validscan.html',
               context: {
-                header: parsedResult.diploma.header,
-                degree: parsedResult.diploma.degree,
-                tail: parsedResult.diploma.tail,
-                person: parsedResult.diploma.person,
-                footer: parsedResult.diploma.footer,
-                place: parsedResult.diploma.place,
-                date: parsedResult.diploma.date
+                header: result.diploma.header,
+                degree: result.diploma.degree,
+                tail: result.diploma.tail,
+                person: result.diploma.person,
+                footer: result.diploma.footer,
+                place: result.diploma.place,
+                date: result.diploma.date
               }
             })
             //mainView.router.loadPage('validscan.html');
