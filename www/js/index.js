@@ -90,9 +90,9 @@ function scan() {
             })
             //mainView.router.loadPage('validscan.html');
           // }
-          else{
-            alert(result)
-          }
+          //else{
+            //alert(result)
+          //}
         }
 
         function requestError(err){
