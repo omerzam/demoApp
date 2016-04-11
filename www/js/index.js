@@ -73,9 +73,9 @@ function scan() {
           } catch(e){
             console.log(e)
           }
-         alert(result)
-          console.log(parsedResult)
-          if(parsedResult.validation.status === 0){
+         //alert(result)
+          //console.log(parsedResult)
+          // if(parsedResult.validation.status === 0){
             mainView.router.load({
               url: 'validscan.html',
               context: {
@@ -89,7 +89,7 @@ function scan() {
               }
             })
             //mainView.router.loadPage('validscan.html');
-          }
+          // }
           else{
             alert(result)
           }
