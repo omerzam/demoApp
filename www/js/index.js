@@ -51,14 +51,14 @@ $$(document).on('pageInit', function (e) {
 // })
 
 function scan() {
-    var url = 'http://ec2-54-191-94-161.us-west-2.compute.amazonaws.com/post-validateb64.php'
-    // var url = 'validreponse.json'
+    // var url = 'http://ec2-54-191-94-161.us-west-2.compute.amazonaws.com/post-validateb64.php'
+    var url = 'validreponse.json'
 
     cordova.plugins.barcodeScanner.scan(
       function (result) {
         var request = $$.ajax({
           url: url,
-          type: "POST",
+          type: "GET",
           data: result.text,
           success: requestSuccess,
           error: requestError,
@@ -73,6 +73,7 @@ function scan() {
           } catch(e){
             console.log(e)
           }
+          alert(result)
           if(parsedResult.validation.status === 0){
             mainView.router.load({
               url: 'validscan.html',
