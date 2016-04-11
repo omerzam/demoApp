@@ -58,7 +58,7 @@ function scan() {
       function (result) {
         var request = $$.ajax({
           url: url,
-          type: "GET",
+          type: "POST",
           data: result.text,
           success: requestSuccess,
           error: requestError,
