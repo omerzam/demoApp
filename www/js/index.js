@@ -68,24 +68,24 @@ function scan() {
         function requestSuccess(result){
           //console.log('success' + result)
           // var parsedResult = {}
-          // try{
-          //   parsedResult = JSON.parse(result)
-          // } catch(e){
-          //   console.log(e)
-          // }
-          //alert(result)
-          // console.log(result)
-          if(result.validation.status === 0){
+          try{
+            parsedResult = JSON.parse(result)
+          } catch(e){
+            console.log(e)
+          }
+         // alert(result)
+          console.log(parsedResult)
+          if(parsedResult.validation.status === 0){
             mainView.router.load({
               url: 'validscan.html',
               context: {
-                header: result.diploma.header,
-                degree: result.diploma.degree,
-                tail: result.diploma.tail,
-                person: result.diploma.person,
-                footer: result.diploma.footer,
-                place: result.diploma.place,
-                date: result.diploma.date
+                header: parsedResult.diploma.header,
+                degree: parsedResult.diploma.degree,
+                tail: parsedResult.diploma.tail,
+                person: parsedResult.diploma.person,
+                footer: parsedResult.diploma.footer,
+                place: parsedResult.diploma.place,
+                date: parsedResult.diploma.date
               }
             })
             //mainView.router.loadPage('validscan.html');
