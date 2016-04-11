@@ -73,7 +73,7 @@ function scan() {
           } catch(e){
             console.log(e)
           }
-         // alert(result)
+         alert(result)
           console.log(parsedResult)
           if(parsedResult.validation.status === 0){
             mainView.router.load({
