@@ -1,8 +1,9 @@
-jQuery.support.cors = true;
+//jQuery.support.cors = true;
 
 // Initialize app
 var myApp = new Framework7({
-  material: true //enable Material theme
+  material: true, //enable Material theme
+  template7Pages: true
 });
 
 
@@ -14,7 +15,7 @@ var mainView = myApp.addView('.view-main', {
     // Because we want to use dynamic navbar, we need to enable it for this view:
     dynamicNavbar: true
 });
-
+  
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
@@ -51,28 +52,56 @@ $$(document).on('pageInit', function (e) {
 
 function scan() {
     var url = 'http://ec2-54-191-94-161.us-west-2.compute.amazonaws.com/post-validateb64.php'
+    // var url = 'validreponse.json'
 
     cordova.plugins.barcodeScanner.scan(
       function (result) {
-        var request = $.ajax({
+        var request = $$.ajax({
           url: url,
-          type: "POST",
-          data: result.text
+          type: "GET",
+          data: result.text,
+          success: requestSuccess,
+          error: requestError,
+          done: requestDone
         });
 
-        request.success(function(result){
-          console.log(result)
-          alert(result)
-        })
+        function requestSuccess(result){
+          //console.log('success' + result)
+          var parsedResult = {}
+          try{
+            parsedResult = JSON.parse(result)
+          } catch(e){
+            console.log(e)
+          }
+          if(parsedResult.validation.status === 0){
+            mainView.router.load({
+              url: 'validscan.html',
+              context: {
+                header: parsedResult.diploma.header,
+                degree: parsedResult.diploma.degree,
+                tail: parsedResult.diploma.tail,
+                person: parsedResult.diploma.person,
+                footer: parsedResult.diploma.footer,
+                place: parsedResult.diploma.place,
+                date: parsedResult.diploma.date
+              }
+            })
+            //mainView.router.loadPage('validscan.html');
+          }
+          else{
+            alert(result)
+          }
+        }
 
-        request.error(function(err){
+        function requestError(err){
           console.log(err)
-          alert(err)
-        })
+          alert('err')
+        }
 
-        request.done(function(result) {
+        function requestDone(result) {
+          console.log('done' + result)
           //alert(result)
-        })
+        }
           // alert("We got a barcode\n" +
           //       "Result: " + result.text + "\n" +
           //       "Format: " + result.format + "\n" +
